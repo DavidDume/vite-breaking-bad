@@ -3,6 +3,7 @@
   import Header from './components/Header.vue';
   import Search from './components/Search.vue';
   import CardList from './components/CardList.vue';
+  import Loading from './components/Loading.vue';
 
   import axios from 'axios';
   import {store} from './store.js'
@@ -11,7 +12,8 @@
     components: {
       Header,
       Search,
-      CardList
+      CardList,
+      Loading
     },
     data() {
       return {
@@ -22,7 +24,7 @@
       getCards() {
         axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?archetype=Blue-Eyes').then(res => {
           this.store.cardList = res.data;
-          console.log(this.store.cardList);
+          this.store.loading = false;
         });
         
       }
@@ -39,9 +41,9 @@
     <div class="wrapper">
       <Search></Search>
       <CardList></CardList>
-    </div>
-    
+    </div>  
   </div>
+  <Loading></Loading>
 </template>
 
 <style lang="scss">
