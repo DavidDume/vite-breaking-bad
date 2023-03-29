@@ -1,5 +1,6 @@
 <template>
     <div class="search">
+        <h4>Search Archetype</h4>
         <select name="" id="" @change="changeArchetype($event)">
             <option :value="archetype.archetype_name" v-for="archetype in store.archetypeList">{{ archetype.archetype_name }}</option>
         </select>

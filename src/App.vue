@@ -57,7 +57,7 @@
 
   .container {
     background-color: #d48f38;
-    height: 100%;
+    height: calc(100vh - 50px);
     width: 100%;
     & .wrapper {
       margin: auto;
