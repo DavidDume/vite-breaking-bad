@@ -21,25 +21,31 @@
       }
     },
     methods: {
-      getCards() {
-        axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?archetype=Blue-Eyes').then(res => {
+      getCards(archetype) {
+        axios.get(`https://db.ygoprodeck.com/api/v7/cardinfo.php?archetype=${archetype}`).then(res => {
           this.store.cardList = res.data;
           this.store.loading = false;
         });
         
+      },
+      getArchetype() {
+        axios.get('https://db.ygoprodeck.com/api/v7/archetypes.php').then(res => {
+          this.store.archetypeList = res.data;
+        });
       }
     },
     created() {
-      this.getCards();
+      this.getCards(this.store.archetype);
+      this.getArchetype();
     }
   }
 </script>
 
 <template>
   <Header title="YU-GI-HO"></Header>
-  <div class="container">
+  <div class="container" v-if="!store.loading">
     <div class="wrapper">
-      <Search></Search>
+      <Search :search="getCards(store.archetype)"></Search>
       <CardList></CardList>
     </div>  
   </div>

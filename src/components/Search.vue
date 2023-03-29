@@ -1,12 +1,29 @@
 <template>
     <div class="search">
-        <input type="text">
+        <select name="" id="" @change="changeArchetype($event)">
+            <option :value="archetype.archetype_name" v-for="archetype in store.archetypeList">{{ archetype.archetype_name }}</option>
+        </select>
     </div>
 </template>
 
 <script> 
+import { store } from '../store';
     export default {
-        name: 'Search'
+        name: 'Search',
+        props: {
+            search: Function
+        },
+        data() {
+            return {
+                store
+            }
+        },
+        methods: {
+            changeArchetype(event) {
+                this.store.archetype = event.target.value;
+                console.log(this.store.archetype);
+            }
+        }
     }
 </script>
 
