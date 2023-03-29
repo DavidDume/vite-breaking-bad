@@ -15,7 +15,7 @@
 
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
     .header {
         padding: 20px 0;
         text-align: center;
